@@ -35,6 +35,7 @@ export default function TransactionItem({
 
   return (
     <div
+      role="article"
       className="border-b p-4 flex flex-col gap-2 cursor-pointer hover:bg-gray-50"
       onClick={onClick}
     >
@@ -42,16 +43,19 @@ export default function TransactionItem({
         <strong>{t.transactions.sender}:</strong> {transaction.sender_whatsapp}
       </div>
       <div>
-        <strong>{t.transactions.receiver}:</strong> {transaction.receiver_whatsapp}
+        <strong>{t.transactions.receiver}:</strong>{" "}
+        {transaction.receiver_whatsapp}
       </div>
       <div>
-        <strong>{t.transactions.amount_sent}:</strong> ${transaction.amount_sent.toFixed(2)}
+        <strong>{t.transactions.amount_sent}:</strong> $
+        {transaction.amount_sent.toFixed(2)}
       </div>
       <div>
         <strong>{t.transactions.status}:</strong> {transaction.status}
       </div>
       <div>
-        <strong>{t.transactions.date}:</strong> {new Date(transaction.date).toLocaleString()}
+        <strong>{t.transactions.date}:</strong>{" "}
+        {new Date(transaction.date).toLocaleString()}
       </div>
     </div>
   );

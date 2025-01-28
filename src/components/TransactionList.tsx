@@ -37,7 +37,7 @@ export default function TransactionList({ transactions, onTransactionClick }: Tr
         </tbody>
       </table>
 
-      <div className="sm:hidden">
+      <div className="sm:hidden" role="region" aria-label="mobile-transaction-cards">
         {transactions.map((transaction) => (
           <TransactionItem
             key={transaction.transaction_id}
