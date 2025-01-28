@@ -1,9 +1,16 @@
+
+import { useLanguage } from "@/context/LanguageContext";
+import en from "@/locales/en";
+import es from "@/locales/es";
 interface FilterMenuProps {
   value: { status: string; dateRange: string };
   onChange: (value: { status: string; dateRange: string }) => void;
 }
 
 export default function FilterMenu({ value, onChange }: FilterMenuProps) {
+  const { language } = useLanguage();
+  const t = language === "en" ? en : es;
+
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange({ ...value, status: e.target.value });
   };
@@ -19,11 +26,11 @@ export default function FilterMenu({ value, onChange }: FilterMenuProps) {
         onChange={handleStatusChange}
         className="border border-gray-300 rounded-lg p-2"
       >
-        <option value="">All Statuses</option>
-        <option value="Pending">Pending</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-        <option value="Failed">Failed</option>
+        <option value="">{t.filters.all_statuses}</option>
+        <option value="Pending">{t.filters.pending}</option>
+        <option value="In Progress">{t.filters.in_progress}</option>
+        <option value="Completed">{t.filters.completed}</option>
+        <option value="Failed">{t.filters.failed}</option>
       </select>
 
       <input

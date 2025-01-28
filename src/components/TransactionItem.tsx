@@ -1,16 +1,26 @@
 import { Transaction } from "@/app/types";
+import { useLanguage } from "@/context/LanguageContext";
+import en from "@/locales/en";
+import es from "@/locales/es";
 
 interface TransactionItemProps {
   transaction: Transaction;
   onClick: () => void;
-  layout: 'table' | 'card';
+  layout: "table" | "card";
 }
 
-export default function TransactionItem({ transaction, onClick, layout }: TransactionItemProps) {
-  if (layout === 'table') {
+export default function TransactionItem({
+  transaction,
+  onClick,
+  layout,
+}: TransactionItemProps) {
+  const { language } = useLanguage();
+  const t = language === "en" ? en : es;
+
+  if (layout === "table") {
     return (
       <tr
-        className="cursor-pointer hover:bg-gray-100"
+        className="cursor-pointer hover:bg-gray-100 text-center"
         onClick={onClick}
       >
         <td className="p-2">{transaction.sender_whatsapp}</td>
@@ -29,19 +39,19 @@ export default function TransactionItem({ transaction, onClick, layout }: Transa
       onClick={onClick}
     >
       <div>
-        <strong>Sender:</strong> {transaction.sender_whatsapp}
+        <strong>{t.transactions.sender}:</strong> {transaction.sender_whatsapp}
       </div>
       <div>
-        <strong>Receiver:</strong> {transaction.receiver_whatsapp}
+        <strong>{t.transactions.receiver}:</strong> {transaction.receiver_whatsapp}
       </div>
       <div>
-        <strong>Amount Sent:</strong> ${transaction.amount_sent.toFixed(2)}
+        <strong>{t.transactions.amount_sent}:</strong> ${transaction.amount_sent.toFixed(2)}
       </div>
       <div>
-        <strong>Status:</strong> {transaction.status}
+        <strong>{t.transactions.status}:</strong> {transaction.status}
       </div>
       <div>
-        <strong>Date:</strong> {new Date(transaction.date).toLocaleString()}
+        <strong>{t.transactions.date}:</strong> {new Date(transaction.date).toLocaleString()}
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
+import { useLanguage } from "@/context/LanguageContext";
+import en from "@/locales/en";
+import es from "@/locales/es";
+
 interface PaginationProps {
   currentPage: number;
   totalItems: number;
@@ -11,6 +15,8 @@ export default function Pagination({
   itemsPerPage,
   onPageChange,
 }: PaginationProps) {
+  const { language } = useLanguage();
+  const t = language === "en" ? en : es;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePrevPage = () => {
@@ -28,17 +34,17 @@ export default function Pagination({
         disabled={currentPage === 1}
         className="px-4 py-2 border rounded-l-lg bg-gray-100 hover:bg-gray-200 disabled:bg-gray-300"
       >
-        Prev
+        {t.pagination.prev}
       </button>
       <span className="px-4 py-2 border-t border-b bg-white">
-        Page {currentPage} of {totalPages}
+        {t.pagination.page} {currentPage} {t.pagination.of} {totalPages}
       </span>
       <button
         onClick={handleNextPage}
         disabled={currentPage === totalPages}
         className="px-4 py-2 border rounded-r-lg bg-gray-100 hover:bg-gray-200 disabled:bg-gray-300"
       >
-        Next
+        {t.pagination.next}
       </button>
     </div>
   );
