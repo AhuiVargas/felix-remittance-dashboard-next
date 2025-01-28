@@ -8,7 +8,6 @@ import Pagination from "@/components/Pagination";
 import TransactionModal from "@/components/TransactionModal";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { Transaction } from "./types";
-// import { fetchTransactions } from './lib/api';
 
 function isDateInRange(transactionDate: string, dateRange: string): boolean {
   const selectedDate = new Date(dateRange).setHours(0, 0, 0, 0);
@@ -27,8 +26,7 @@ export default function HomePage() {
     dateRange: "",
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [selectedTransaction, setSelectedTransaction] =
-    useState<Transaction | null>(null);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 
   useEffect(() => {
     const loadTransactions = async () => {
@@ -37,7 +35,7 @@ export default function HomePage() {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        const data = await res.json();
+        const data: Transaction[] = await res.json();
         setTransactions(data);
       } catch (err) {
         console.error(err);
