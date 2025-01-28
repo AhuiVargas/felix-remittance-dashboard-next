@@ -9,7 +9,7 @@ interface TransactionListProps {
 export default function TransactionList({ transactions, onTransactionClick }: TransactionListProps) {
   return (
     <div className="bg-white shadow rounded-lg overflow-hidden">
-      <table className="w-full table-auto">
+      <table className="hidden sm:table w-full table-auto text-sm border-collapse">
         <thead>
           <tr className="bg-gray-200">
             <th className="p-2">Sender</th>
@@ -26,10 +26,22 @@ export default function TransactionList({ transactions, onTransactionClick }: Tr
               key={transaction.transaction_id}
               transaction={transaction}
               onClick={() => onTransactionClick(transaction)}
+              layout="table"
             />
           ))}
         </tbody>
       </table>
+
+      <div className="sm:hidden">
+        {transactions.map((transaction) => (
+          <TransactionItem
+            key={transaction.transaction_id}
+            transaction={transaction}
+            onClick={() => onTransactionClick(transaction)}
+            layout="card"
+          />
+        ))}
+      </div>
     </div>
   );
 }
