@@ -14,7 +14,7 @@ export default function TransactionItem({ transaction, onClick }: TransactionIte
       <td className="p-2">{transaction.sender_whatsapp}</td>
       <td className="p-2">{transaction.receiver_whatsapp}</td>
       <td className="p-2">${transaction.amount_sent.toFixed(2)} USD</td>
-      <td className="p-2">{transaction.amount_received.toFixed(2)} MXN</td>
+      <td className="p-2">${transaction.amount_received.toFixed(2)} MXN</td>
       <td className="p-2">{transaction.status}</td>
       <td className="p-2">{new Date(transaction.date).toLocaleString()}</td>
     </tr>

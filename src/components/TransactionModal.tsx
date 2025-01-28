@@ -17,7 +17,7 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
         <p><strong>Receiver:</strong> {transaction.receiver_whatsapp}</p>
         <p><strong>Amount Sent:</strong> ${transaction.amount_sent.toFixed(2)} USD</p>
         <p><strong>Exchange Rate:</strong> {transaction.exchange_rate}</p>
-        <p><strong>Amount Received:</strong> {transaction.amount_received.toFixed(2)} MXN</p>
+        <p><strong>Amount Received:</strong> ${transaction.amount_received.toFixed(2)} MXN</p>
         <p><strong>Status:</strong> {transaction.status}</p>
         <p><strong>Payment Method:</strong> {transaction.payment_method}</p>
         <p><strong>Date:</strong> {new Date(transaction.date).toLocaleString()}</p>
